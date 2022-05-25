@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Gudeg Yu Djum",
+        "nominal": 24000,
+        "category": "Food",
+        "UserId": 1
+    },
+    {
+        "name": "Preksu",
+        "nominal": 21000,
+        "category": "Food",
+        "UserId": 1
+    },
+    {
+        "name": "Waroeng Spesial Sambal",
+        "nominal": 18000,
+        "category": "Food",
+        "UserId": 1
+    },
+    {
+        "name": "Sepatu Brodo",
+        "nominal": 230000,
+        "category": "Shopping",
+        "UserId": 1
+    },
+    {
+        "name": "Jaket Paperfeed",
+        "nominal": 280000,
+        "category": "Shopping",
+        "UserId": 1
+    },
+    {
+        "name": "Sucorinvest Stable Fund",
+        "nominal": 700000,
+        "category": "Investment",
+        "UserId": 1
+    }
+]
