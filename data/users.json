@@ -1,7 +1,14 @@
 [
     {
-        "username": "ridhokhalis",
+        "username": "ridhocust",
         "password": "password",
-        "email": "ridhokhalis@gmail.com"
+        "email": "ridhocust@gmail.com",
+        "role": "customer"
+    },
+    {
+        "username": "ridhoadm",
+        "password": "password",
+        "email": "ridhoadm@gmail.com",
+        "role": "admin"
     }
 ]
