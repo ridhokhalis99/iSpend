@@ -63,7 +63,8 @@ class Controller {
     }
 
     static iSpend(req,res){
-        const {id} = req.params
+        // const {id} = req.params
+        const id = req.session.UserId
         // res.send(id)
         const {filter} = req.query
         // console.log(filter)
@@ -123,23 +124,95 @@ class Controller {
     }
 
     static addTransactionForm(req, res){
-        
+        res.render('addTransaction')
     }
 
     static addTransaction(req, res){
+        // res.send(req.body)
+        const id = req.session.UserId
+        const {name,nominal,category} = req.body
+        // let newDate = new Date()
 
+        Transaction.create({
+            name,
+            nominal,
+            category,
+            UserId: id,
+        })
+        .then(()=>{
+            res.redirect('/')
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
     }
 
     static showProfile(req, res){
+        const id = req.session.UserId
 
+        Profile.findOne({where: {UserId: id}})
+        .then((dataProfile)=>{
+            res.render('profile', {dataProfile})
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
     }
 
     static editProfileForm(req, res){
+        const id = req.session.UserId
 
+        Profile.findOne({where: {UserId: id}})
+        .then((dataProfile)=>{
+            res.render('profileEdit', {dataProfile})
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
     }
 
     static editProfile(req, res){
+        // res.send(req.body)
+        // {"fullname":"Raymond Kurnia","monthlySalary":"10000000"}
+        const id = req.session.UserId
+        const {fullName,monthlySalary} = req.body
 
+        Profile.findOne({where: {UserId: id}})
+        .then((dataProfile)=>{
+            // res.render('profileEdit', {dataProfile})
+            let profileId = dataProfile.id
+            // res.send(dataProfile)
+            return Profile.update({
+                    fullName: fullName,
+                    monthlySalary: monthlySalary
+                },{
+                    where:{
+                        id: profileId
+                }
+                })
+        })
+        .then(()=>{
+            res.redirect('/profile')
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
+    }
+
+    static deleteTransaction(req,res){
+        const {transactionId} = req.params
+        console.log(transactionId)
+        Transaction.destroy({
+            where: {
+                id: +transactionId
+            }
+        })
+        .then(()=>{
+            res.redirect('/')
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
     }
 
     static userList(req, res){

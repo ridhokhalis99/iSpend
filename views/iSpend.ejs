@@ -17,6 +17,7 @@
 
     <h2>Halo, <%= dataBar.Profile.fullName %> </h2>
     <h4>Monthly Salary: <%= dataBar.Profile.monthlySalary %> </h4>
+    <a href="/profile"><button>My Profile</button></a>
 
     <p> barrr disini</p>
     <br></br>
@@ -27,6 +28,8 @@
     <!-- /startups/?filter=Hustler -->
     <a href="/users/<%=dataBar.id%>"><button>All</button></a><a href="/users/<%=dataBar.id%>/?filter=Food"><button>Food</button></a><a href="/users/<%=dataBar.id%>/?filter=Shopping"><button>Shopping</button></a>
     <a href="/users/<%=dataBar.id%>/?filter=Investment"><button>Investment</button></a>
+    <span>..........</span>
+    <a href="/addTransaction"><button>Add Transaction</button></a>
     <br></br>
     <div>
     <table style="align-items: center;">
@@ -44,7 +47,8 @@
                     <td><%= t.nominal %></td>
                     <td><%= t.createdAt %></td>
                     <td><%= t.category %></td>
-                    <td><button>Delete</button></td>
+                    <td>
+                    <a href="/deleteTransaction/<%=t.id%>"><button>Delete</button></a></td>
                 </tr>
             <% }) %>
         </tbody>

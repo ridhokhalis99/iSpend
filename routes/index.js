@@ -19,12 +19,13 @@ router.use(function (req, res, next) {
     }
 })
 
-router.get('/', Controller.index)
-// router.get('/addTransaction', Controller.addTransactionForm)
-// router.post('/addTransaction', Controller.addTransaction)
-// router.get('/profile', Controller.showProfile)
-// router.get('/profile/edit', Controller.editProfileForm)
-// router.post('/profile/edit', Controller.editProfile)
+router.get('/', Controller.iSpend)
+router.get('/addTransaction', Controller.addTransactionForm)
+router.post('/addTransaction', Controller.addTransaction)
+router.get('/profile', Controller.showProfile)
+router.get('/profile/edit', Controller.editProfileForm)
+router.post('/profile/edit', Controller.editProfile)
+router.get('/deleteTransaction/:transactionId', Controller.deleteTransaction)
 // router.get('/users', Controller.userList)
 // router.get('/users/:UserId/delete', Controller.deleteUser)
 

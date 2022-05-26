@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Transaction</title>
+</head>
+<body style="text-align:center">
+    <form action="/addTransaction" method="post">
+        <label>Transaction name :</label>
+        <br></br>
+        <input type="text" name="name">
+        <br></br>
+        <label>Nominal :</label>
+        <br></br>
+        <input type="number" name="nominal">
+        <br></br>
+        <label>Category :</label>
+        <br></br>
+        <select name="category">
+            <option value="Food">Food</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Investment">Investment</option>
+        </select>
+        <br></br>
+        <button type="submit">Submit</button>
+        <br></br>
+    </form>
+    <a href="/"><button>Cancel Add</button></a>
+    
+    
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="text-align:center">
+    <h1>My Profile</h1>
+    <!-- <pre><%= JSON.stringify(dataProfile,null,2) %> </pre> -->
+    <h4>Name: <%= dataProfile.fullName %> </h4>
+    <h4>Gender: <%= dataProfile.gender %> </h4>
+    <h4>Monthly Salary: <%= dataProfile.monthlySalary %> </h4>
+    <a href="/profile/edit"><button>Edit Profile</button></a>
+    <a href="/"><button>Back to Home</button></a>
+</body>
+</html>
