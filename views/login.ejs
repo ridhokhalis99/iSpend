@@ -9,6 +9,9 @@
 <body style="text-align:center">
     <h1>Login</h1>
     <br></br>
+    <% if (error) { %>
+        <p><%= error %></p>
+    <% } %>
     <form action="/login" method="post">
         <label>Username :</label>
         <br></br>
