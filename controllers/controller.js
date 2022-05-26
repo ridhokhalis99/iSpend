@@ -243,7 +243,8 @@ class Controller {
     }
 
     static userList(req, res){
-        User.findAll({where: { role: 'customer'}})
+        User.findAll({include: Profile,
+            where: { role: 'customer'}})
         .then((dataUsers)=>{
             res.render('userList',{dataUsers})
         })
@@ -264,6 +265,16 @@ class Controller {
         })
         .catch((err)=>{
             res.send(err)
+        })
+    }
+
+    static logout(req,res){
+        req.session.destroy((err)=>{
+            if(err){
+                res.send(err)
+            } else {
+                res.redirect('/login')
+            }
         })
     }
 }

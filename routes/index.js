@@ -5,6 +5,7 @@ router.get('/login', Controller.login)
 router.post('/login', Controller.checkUser)
 router.get('/signUp', Controller.signUp)
 router.post('/signUp', Controller.addUser)
+router.get('/logout', Controller.logout)
 
 router.use(function (req, res, next) {
     console.log(req.session)

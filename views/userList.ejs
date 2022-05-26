@@ -11,13 +11,19 @@
         }
         </style>
 </head>
-<body>
+<body style="text-align:center">
+    <a href="/logout" style="float:right"><button>Logout</button></a>
+    <br></br>
     <h1>Page Admin: List User</h1>
-    <pre><%= JSON.stringify(dataUsers,null,2) %> </pre>
+    <!-- <pre><%= JSON.stringify(dataUsers,null,2) %> </pre> -->
+    <br></br>
+    
+    
 
-    <table>
+    <table style="margin-left:auto;margin-right:auto">
         <thead>
             <th>Id</th>
+            <th>Fullname</th>
             <th>Username</th>
             <th>Email</th>
             <th>Role</th>
@@ -27,6 +33,7 @@
             <% dataUsers.forEach(u => { %>
              <tr>
                  <td><%= u.id %> </td>
+                 <td><%= u.Profile.fullName %></td>
                  <td><%= u.username %> </td>
                  <td><%= u.email %> </td>
                  <td><%= u.role %> </td>
@@ -36,5 +43,8 @@
             <% }) %>
         </tbody>
     </table>
+    <br></br>
+    <br></br>
+    
 </body>
 </html>
