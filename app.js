@@ -18,5 +18,5 @@ app.use(session({
 app.use('/', router)
 
 app.listen(PORT, () => {
-    console.log(`listening on PORT ${port}`)
+    console.log(`listening on PORT ${PORT}`)
 })
