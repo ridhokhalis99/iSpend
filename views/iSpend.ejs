@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSpend</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+        </style>
+</head>
+<body style="text-align:center">
+    <!-- <pre><%= JSON.stringify(dataBar,null,2) %> </pre> -->
+    <!-- <pre><%= JSON.stringify(dataUser,null,2) %> </pre> -->
+
+    <h2>Halo, <%= dataBar.Profile.fullName %> </h2>
+    <h4>Monthly Salary: <%= dataBar.Profile.monthlySalary %> </h4>
+
+    <p> barrr disini</p>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <!-- /startups/?filter=Hustler -->
+    <a href="/users/<%=dataBar.id%>"><button>All</button></a><a href="/users/<%=dataBar.id%>/?filter=Food"><button>Food</button></a><a href="/users/<%=dataBar.id%>/?filter=Shopping"><button>Shopping</button></a>
+    <a href="/users/<%=dataBar.id%>/?filter=Investment"><button>Investment</button></a>
+    <br></br>
+    <div>
+    <table style="align-items: center;">
+        <thead>
+            <th>Transaction</th>
+            <th>Nominal</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <% dataUser.Transactions.forEach((t,i) => { %>
+                <tr>
+                    <td><%= t.name %> </td>
+                    <td><%= t.nominal %></td>
+                    <td><%= t.createdAt %></td>
+                    <td><%= t.category %></td>
+                    <td><button>Delete</button></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

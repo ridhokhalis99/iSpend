@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body style="text-align:center">
+    <h1>Sign Up</h1>
+    <br></br>
+    <form action="/signup" method="post">
+        <label>Username :</label>
+        <br></br>
+        <input type="text" name="username">
+        <br></br>
+        <label>Password:</label>
+        <br></br>
+        <input type="password" name="password">
+        <br></br>
+        <label>Email :</label>
+        <br></br>
+        <input type="text" name="email">
+        <br></br>
+        <label>Role :</label>
+        <br></br>
+        <select name="Role">
+            <option value="customer">Customer</option>
+            <option value="admin">Admin</option>
+        </select>
+        <br></br>
+        <label>Full Name :</label>
+        <br></br>
+        <input type="text" name="fullName">
+        <br></br>
+        <label>Gender :</label>
+        <br></br>
+        <input type="radio" name="gender" value="Male">Male<input type="radio" name="gender" value="Female">Female
+        <br></br>
+        <label>BirthDate :</label>
+        <br></br>
+        <input type="date" name="birthDate">
+        <br></br>
+        <label>Monthly Salary :</label>
+        <br></br>
+        <input type="number" name="monthlySalary">
+        <br></br>
+        <button type="submit">Signup</button>
+    </form>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <a href="/login"><button>Login Page</button></a>
+</body>
+</html>
