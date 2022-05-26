@@ -94,13 +94,62 @@ class Controller {
         }
         let transactions = []
 
-        Transaction.findAll(option)
+        let tempTotalFood = 0
+        let tempTotalInvestment = 0
+        let tempTotalShopping = 0
+        let tempSisaUang = 0
+  
+        Transaction.sum('nominal',{
+            where:{
+                UserId:id,
+                category: "Food"
+            }
+        })
+          .then((result)=>{
+              console.log(result)
+              if(result){
+                  
+                  tempTotalFood = result
+              }
+            return Transaction.sum('nominal',{
+                where:{
+                    UserId:id,
+                    category: "Investment"
+                }
+            })
+            .then((result)=>{
+                // console.log(result)
+                if(result){
+                    tempTotalInvestment = result
+
+                }
+                return Transaction.sum('nominal',{
+                    where:{
+                        UserId:id,
+                        category: "Shopping"
+                    }
+                })
+            })
+            .then((result)=>{
+                if(result){
+                    tempTotalShopping = result
+                }
+                // console.log(result)
+                // console.log(tempTotalFood,tempTotalInvestment,tempTotalShopping)
+                return Transaction.findAll(option)
+            })
+          })
             .then(data => {
                 transactions = data
                 return Profile.findOne({where: {UserId: id}})
             })
             .then(profile => {
-                res.render('iSpend', {transactions, profile, sort, filter, rupiahFormat})
+                // tempSisaUang = 
+                // console.log(profile)
+                // console.log(profile.monthlySalary)
+                tempSisaUang = profile.monthlySalary - tempTotalFood - tempTotalInvestment -tempTotalShopping
+                // console.log(tempSisaUang)
+                res.render('iSpend', {transactions, profile, sort, filter, rupiahFormat,tempTotalFood,tempTotalInvestment,tempTotalShopping,tempSisaUang})
             })
             .catch(err => {
                 res.send(err)
@@ -134,7 +183,7 @@ class Controller {
 
         Profile.findOne({where: {UserId: id}})
             .then((dataProfile)=>{
-                res.render('profile', {dataProfile})
+                res.render('profile', {dataProfile, rupiahFormat})
             })
             .catch((err)=>{
                 res.send(err)
