@@ -74,31 +74,8 @@ class Controller {
     }
 
     static iSpend(req,res){
-        // const {id} = req.params
         const id = req.session.UserId
-        // res.send(id)
         const {sort, filter} = req.query
-        console.log(filter)
-
-        // ==================================== untuk option data dari promise ke 2 (dataUser), data yang bisa di filter
-        // let option = {
-        //     include: [Profile, {
-        //         model: Transaction
-                
-        //     }]
-        // }
-
-        // if (filter) {
-        //     option = {
-        //         include: [Profile, {
-        //             model: Transaction,
-        //             where: {
-        //                 category: filter
-        //             }
-        //         }]
-        //     }
-        // }
-
         let option = {
             order: [['id', 'DESC']],
             where: {
@@ -115,12 +92,7 @@ class Controller {
                 [sort, 'ASC']
             ]
         }
-
-        // ===========================================
-
-        let dataBar = {}
-         let transactions = []
-        // dataBar buat data yang tetap yang ga ke filter buat chart bar
+        let transactions = []
 
         Transaction.findAll(option)
             .then(data => {
@@ -133,21 +105,6 @@ class Controller {
             .catch(err => {
                 res.send(err)
             })
-
-        // User.findByPk(id,{
-        //     include: [Profile, Transaction]
-        // })
-        // .then((dataForBar)=>{
-        //     dataBar = dataForBar
-        //     return User.findByPk(id,option)
-        // })
-        // .then((dataUser)=>{
-        //     res.render('iSpend',{dataUser, dataBar, rupiahFormat})
-        // })
-        // .catch((err)=>{
-        //     res.send(err)
-        // })
-
     }
 
     static addTransactionForm(req, res){
@@ -155,10 +112,8 @@ class Controller {
     }
 
     static addTransaction(req, res){
-        // res.send(req.body)
         const id = req.session.UserId
         const {name,nominal,category} = req.body
-        // let newDate = new Date()
 
         Transaction.create({
             name,
@@ -166,64 +121,61 @@ class Controller {
             category,
             UserId: id,
         })
-        .then(()=>{
-            res.redirect('/')
-        })
-        .catch((err)=>{
-            res.send(err)
-        })
+            .then(()=>{
+                res.redirect('/')
+            })
+            .catch((err)=>{
+                res.send(err)
+            })
     }
 
     static showProfile(req, res){
         const id = req.session.UserId
 
         Profile.findOne({where: {UserId: id}})
-        .then((dataProfile)=>{
-            res.render('profile', {dataProfile})
-        })
-        .catch((err)=>{
-            res.send(err)
-        })
+            .then((dataProfile)=>{
+                res.render('profile', {dataProfile})
+            })
+            .catch((err)=>{
+                res.send(err)
+            })
     }
 
     static editProfileForm(req, res){
         const id = req.session.UserId
 
         Profile.findOne({where: {UserId: id}})
-        .then((dataProfile)=>{
-            res.render('profileEdit', {dataProfile})
-        })
-        .catch((err)=>{
-            res.send(err)
-        })
+            .then((dataProfile)=>{
+                res.render('profileEdit', {dataProfile})
+            })
+            .catch((err)=>{
+                res.send(err)
+            })
     }
 
     static editProfile(req, res){
-        // res.send(req.body)
-        // {"fullname":"Raymond Kurnia","monthlySalary":"10000000"}
         const id = req.session.UserId
         const {fullName,monthlySalary} = req.body
 
         Profile.findOne({where: {UserId: id}})
-        .then((dataProfile)=>{
-            // res.render('profileEdit', {dataProfile})
-            let profileId = dataProfile.id
-            // res.send(dataProfile)
-            return Profile.update({
-                    fullName: fullName,
-                    monthlySalary: monthlySalary
-                },{
-                    where:{
-                        id: profileId
-                }
+            .then((dataProfile)=>{
+                let profileId = dataProfile.id
+                return Profile.update({
+                        fullName: fullName,
+                        monthlySalary: monthlySalary
+                    },
+                    {
+                        where: {
+                            id: profileId
+                    }
                 })
-        })
-        .then(()=>{
-            res.redirect('/profile')
-        })
-        .catch((err)=>{
-            res.send(err)
-        })
+            })
+            .then(()=>{
+                res.redirect('/profile')
+            })
+            .catch((err)=>{
+                res.send(err)
+            })
     }
 
     static deleteTransaction(req,res){
@@ -234,23 +186,23 @@ class Controller {
                 id: +transactionId
             }
         })
-        .then(()=>{
-            res.redirect('/')
-        })
-        .catch((err)=>{
-            res.send(err)
-        })
+            .then(()=>{
+                res.redirect('/')
+            })
+            .catch((err)=>{
+                res.send(err)
+            })
     }
 
     static userList(req, res){
         User.findAll({include: Profile,
             where: { role: 'customer'}})
-        .then((dataUsers)=>{
-            res.render('userList',{dataUsers})
-        })
-        .catch((err)=>{
-            res.send(err)
-        })
+            .then((dataUsers)=>{
+                res.render('userList',{dataUsers})
+            })
+            .catch((err)=>{
+                res.send(err)
+            })
     }
 
     static deleteUser(req, res){
@@ -260,12 +212,12 @@ class Controller {
                 id: UserId
             }
         })
-        .then(()=>{
-            res.redirect('/users')
-        })
-        .catch((err)=>{
-            res.send(err)
-        })
+            .then(()=>{
+                res.redirect('/users')
+            })
+            .catch((err)=>{
+                res.send(err)
+            })
     }
 
     static logout(req,res){

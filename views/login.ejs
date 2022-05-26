@@ -4,30 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet" crossorigin="anonymous">
     <title>Login</title>
 </head>
-<body style="text-align:center">
-    <h1>Login</h1>
-    <br></br>
-    <% if (error) { %>
-        <p><%= error %></p>
-    <% } %>
-    <form action="/login" method="post">
-        <label>Username :</label>
-        <br></br>
-        <input type="text" name="username">
-        <br></br>
-        <label>Password:</label>
-        <br></br>
-        <input type="password" name="password">
-        <br></br>
-        <button type="submit">Login</button>
-    </form>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <a href="/signup"><button>Sign Up Page</button></a>
+<body class="text-center">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <form action="/login" method="post" class="form-signin">
+                <h1 class="mb-3">iSpend</h1>
+                <% if (error) { %>
+                        <p class="text-danger"><%= error %></p>
+                <% } %>
+
+                <input type="text" class="form-control" placeholder="Username" name="username" required autofocus>
+                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <a href="/signup" class="btn btn-secondary">Sign Up</a>
+                </div>
+                <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
