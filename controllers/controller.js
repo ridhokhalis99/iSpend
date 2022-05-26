@@ -132,8 +132,6 @@ class Controller {
                 if(result){
                     tempTotalShopping = result
                 }
-                // console.log(result)
-                // console.log(tempTotalFood,tempTotalInvestment,tempTotalShopping)
                 return Transaction.findAll(option)
             })
           })
@@ -142,11 +140,7 @@ class Controller {
                 return Profile.findOne({where: {UserId: id}})
             })
             .then(profile => {
-                // tempSisaUang = 
-                // console.log(profile)
-                // console.log(profile.monthlySalary)
                 tempSisaUang = profile.monthlySalary - tempTotalFood - tempTotalInvestment -tempTotalShopping
-                // console.log(tempSisaUang)
                 res.render('iSpend', {transactions, profile, sort, filter, rupiahFormat,tempTotalFood,tempTotalInvestment,tempTotalShopping,tempSisaUang})
             })
             .catch(err => {
