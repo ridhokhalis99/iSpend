@@ -10,9 +10,9 @@
 <body style="text-align: center;">
     <a href="/logout" style="float:right"><button>Logout</button></a>
     <h1>Edit Profile</h1>
-    
-    <!-- <pre><%= JSON.stringify(dataProfile,null,2) %> </pre> -->
-
+    <% if (error) { %>
+        <p class="text-danger"><%= error %></p>
+    <% } %>
     <form action="/profile/edit" method="post">
         <label>Name:</label>
         <input type="text" value="<%=dataProfile.fullName%>" name="fullName">

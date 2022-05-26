@@ -39,7 +39,8 @@ class Controller {
     }
 
     static signUp(req, res){
-        res.render('signup')
+        const {error} = req.query
+        res.render('signup',{error})
     }
 
     static addUser(req, res){
@@ -149,7 +150,8 @@ class Controller {
     }
 
     static addTransactionForm(req, res){
-        res.render('addTransaction')
+        const {error} = req.query
+        res.render('addTransaction', {error})
     }
 
     static addTransaction(req, res){
@@ -166,6 +168,10 @@ class Controller {
                 res.redirect('/')
             })
             .catch((err)=>{
+                if(err.name === 'SequelizeValidationError'){
+                    err = err.errors.map(error => error.message)
+                    return res.redirect(`/addTransaction?error=${err}`)
+                }
                 res.send(err)
             })
     }
@@ -184,10 +190,10 @@ class Controller {
 
     static editProfileForm(req, res){
         const id = req.session.UserId
-
+        const {error} = req.query
         Profile.findOne({where: {UserId: id}})
             .then((dataProfile)=>{
-                res.render('profileEdit', {dataProfile})
+                res.render('profileEdit', {dataProfile, error})
             })
             .catch((err)=>{
                 res.send(err)
@@ -215,6 +221,10 @@ class Controller {
                 res.redirect('/profile')
             })
             .catch((err)=>{
+                if(err.name === 'SequelizeValidationError'){
+                    err = err.errors.map(error => error.message)
+                    return res.redirect(`/addTransaction?error=${err}`)
+                }
                 res.send(err)
             })
     }

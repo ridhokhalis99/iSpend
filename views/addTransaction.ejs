@@ -9,6 +9,9 @@
 </head>
 <body style="text-align:center">
     <a href="/logout" style="float:right"><button>Logout</button></a>
+    <% if (error) { %>
+        <p class="text-danger"><%= error %></p>
+    <% } %>
     <form action="/addTransaction" method="post">
         <label>Transaction name :</label>
         
