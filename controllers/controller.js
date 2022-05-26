@@ -84,7 +84,7 @@ class Controller {
          }
 
          if(filter){
-           option.where = Transaction.filterBy(filter)
+           option.where.category = filter
          }
 
          if (sort) {

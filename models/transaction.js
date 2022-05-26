@@ -13,9 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static filterBy(filter){
-      return {
-        category: filter
-      }
+      return filter
     }
 
     static sortBy(sort){
