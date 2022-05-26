@@ -16,6 +16,8 @@ class Controller {
         // res.send(id)
         const {filter} = req.query
         // console.log(filter)
+
+        // ==================================== untuk option data dari promise ke 2 (dataUser), data yang bisa di filter
         let option = {
             include: [Profile, {
                 model: Transaction
@@ -34,7 +36,13 @@ class Controller {
             }
         }
 
+        // ===========================================
+
         let dataBar = {}
+
+        // dataBar buat data yang tetap yang ga ke filter buat chart bar
+
+
 
         User.findByPk(id,{
             include: [Profile, Transaction]
