@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Admin</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+        </style>
+</head>
+<body>
+    <h1>Page Admin: List User</h1>
+    <pre><%= JSON.stringify(dataUsers,null,2) %> </pre>
+
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% dataUsers.forEach(u => { %>
+             <tr>
+                 <td><%= u.id %> </td>
+                 <td><%= u.username %> </td>
+                 <td><%= u.email %> </td>
+                 <td><%= u.role %> </td>
+                 <td><a href="/users/<%=u.id%>/delete"><button>Delete</button></a></td>
+             </tr>
+
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -19,7 +19,13 @@ class Controller {
                         res.redirect(`/login?error=${error}`)
                     } else {
                         req.session.UserId = user.id
-                        res.redirect('/')
+                        req.session.role = user.role
+
+                        if(req.session.role == "admin"){
+                            res.redirect('/users')
+                        } else {
+                            res.redirect('/')
+                        }
                     }
                 } else {
                     error = 'Username not found'
@@ -216,11 +222,31 @@ class Controller {
     }
 
     static userList(req, res){
-
+        console.log('admin masook')
+        // res.send('admin masyuk')
+        // tampilkan list user
+        User.findAll()
+        .then((dataUsers)=>{
+            res.render('userList',{dataUsers})
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
     }
 
     static deleteUser(req, res){
-        
+        const {UserId} = req.params
+        User.destroy({
+            where: {
+                id: UserId
+            }
+        })
+        .then(()=>{
+            res.redirect('/users')
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
     }
 }
 

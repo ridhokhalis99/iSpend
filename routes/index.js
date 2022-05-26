@@ -26,7 +26,18 @@ router.get('/profile', Controller.showProfile)
 router.get('/profile/edit', Controller.editProfileForm)
 router.post('/profile/edit', Controller.editProfile)
 router.get('/deleteTransaction/:transactionId', Controller.deleteTransaction)
-// router.get('/users', Controller.userList)
-// router.get('/users/:UserId/delete', Controller.deleteUser)
+
+router.use(function (req, res, next) {
+    console.log(req.session)
+    if(req.session.role !== "admin"){
+        const error = 'Admin only'
+        res.redirect(`/?error=${error}`)
+    } else {
+        next()
+    }
+})
+
+router.get('/users', Controller.userList)
+router.get('/users/:UserId/delete', Controller.deleteUser)
 
 module.exports = router
