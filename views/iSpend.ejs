@@ -22,7 +22,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     <div class="container">
         <div class="mt-5">
             <h2>Halo, <%= profile.fullName %> </h2>
-            <h4>Monthly Salary: <%= profile.monthlySalary %> </h4>
+            <h4>Monthly Salary: <%= rupiahFormat(profile.monthlySalary) %> </h4>
             <a href="/profile" class="btn btn-primary mt-2">My Profile</a>
         </div>
         
@@ -90,38 +90,32 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </div>
 
     <script>
-
-        // const angka1 = document.getElementById("angka1").value
-        // const angka2 = document.getElementById("angka2").value
-        // const angka3 = document.getElementById("angka3").value
-        // const angka4 = document.getElementById("angka4").value
-  
-          const labels = [
-      'Food',
-      'Investment',
-      'Shopping',
-    ];
-      
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: 'iSpend',
-        backgroundColor: ['rgb(38, 230, 90)','rgb(38, 64, 230)','rgb(224, 230, 38)'],
-        borderColor: 'rgb(255, 99, 132)',
-        data: [<%=tempTotalFood%>,<%=tempTotalInvestment%>,<%=tempTotalShopping%>],
-              
-      }]
-    };
-    const config = {
-      type: 'bar',
-      data: data,
-      options: {}
-    }
-  
-          const myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
-        </script>
+        const labels = [
+        'Food',
+        'Investment',
+        'Shopping',
+        ];
+        
+        const data = {
+        labels: labels,
+        datasets: [{
+            label: 'iSpend',
+            backgroundColor: ['rgb(38, 230, 90)','rgb(38, 64, 230)','rgb(224, 230, 38)'],
+            borderColor: 'rgb(255, 99, 132)',
+            data: [<%=tempTotalFood%>,<%=tempTotalInvestment%>,<%=tempTotalShopping%>],
+                
+        }]
+        };
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {}
+        }
+    
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
 </body>
 </html>

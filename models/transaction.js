@@ -11,6 +11,19 @@ module.exports = (sequelize, DataTypes) => {
     get transactionDate(){
       return (this.updatedAt).toISOString().split('T')[0]
     }
+
+    static filterBy(filter){
+      return {
+        category: filter
+      }
+    }
+
+    static sortBy(sort){
+      return [
+          [sort, 'ASC']
+        ]
+      
+    }
   }
   Transaction.init({
     name: {

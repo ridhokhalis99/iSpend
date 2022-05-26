@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       Profile.belongsTo(models.User)
     }
 
-    static formalname(name, gender){
-      return `${gender === 'Male' ? 'Mr.' : 'Ms.'} ${name}`
-    }
-
     get age(){
       const diffMilliSeconds = Math.abs( new Date() - this.birthDate)
       const diffYears = Math.floor(diffMilliSeconds / (1000 * 60 * 60 * 24 * 365)) 

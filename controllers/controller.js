@@ -82,16 +82,15 @@ class Controller {
                 UserId: id
             }
          }
+
          if(filter){
-           option.where = {
-              category: filter
-           }
+           option.where = Transaction.filterBy(filter)
          }
+
          if (sort) {
-            option.order = [
-                [sort, 'ASC']
-            ]
+            option.order = Transaction.sortBy(sort)
         }
+        
         let transactions = []
 
         let tempTotalFood = 0
@@ -118,7 +117,6 @@ class Controller {
                 }
             })
             .then((result)=>{
-                // console.log(result)
                 if(result){
                     tempTotalInvestment = result
 
