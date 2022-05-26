@@ -12,11 +12,9 @@
         </style>
 </head>
 <body style="text-align:center">
-    <!-- <pre><%= JSON.stringify(dataBar,null,2) %> </pre> -->
-    <!-- <pre><%= JSON.stringify(dataUser,null,2) %> </pre> -->
 
-    <h2>Halo, <%= dataBar.Profile.fullName %> </h2>
-    <h4>Monthly Salary: <%= dataBar.Profile.monthlySalary %> </h4>
+    <h2>Halo, <%= profile.fullName %> </h2>
+    <h4>Monthly Salary: <%= profile.monthlySalary %> </h4>
     <a href="/profile"><button>My Profile</button></a>
 
     <p> barrr disini</p>
@@ -26,33 +24,63 @@
     <br></br>
     <br></br>
     <!-- /startups/?filter=Hustler -->
-    <a href="/users/<%=dataBar.id%>"><button>All</button></a><a href="/users/<%=dataBar.id%>/?filter=Food"><button>Food</button></a><a href="/users/<%=dataBar.id%>/?filter=Shopping"><button>Shopping</button></a>
-    <a href="/users/<%=dataBar.id%>/?filter=Investment"><button>Investment</button></a>
-    <span>..........</span>
-    <a href="/addTransaction"><button>Add Transaction</button></a>
-    <br></br>
+    
     <div>
-    <table style="align-items: center;">
-        <thead>
-            <th>Transaction</th>
-            <th>Nominal</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Delete</th>
-        </thead>
-        <tbody>
-            <% dataUser.Transactions.forEach((t,i) => { %>
-                <tr>
-                    <td><%= t.name %> </td>
-                    <td><%= t.nominal %></td>
-                    <td><%= t.createdAt %></td>
-                    <td><%= t.category %></td>
-                    <td>
-                    <a href="/deleteTransaction/<%=t.id%>"><button>Delete</button></a></td>
-                </tr>
-            <% }) %>
-        </tbody>
-    </table>
+        <form action="/" method="get">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" value="updatedAt" <%= sort === 'updatedAt' ? 'checked' : '' %>>
+                <label class="form-check-label">
+                    Date
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" value="nominal" <%= sort === 'nominal' ? 'checked' : '' %>>
+                <label class="form-check-label">
+                    Nominal
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" value="name" <%= sort === 'name' ? 'checked' : '' %>>
+                <label class="form-check-label">
+                    Name
+                </label>
+              </div>
+              <div class="form-group">
+                <select name="filter" class="form-control">
+                    <option value="" selected>All</option>
+                    <option value="Food" <%= filter === 'Food' ? 'selected' : '' %>>Food</option>
+                    <option value="Shopping" <%= filter === 'Shopping' ? 'selected' : '' %>>Shopping</option>
+                    <option value="Investment" <%= filter === 'Investment' ? 'selected' : '' %>>Investment</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-success mt-3 mb-4">Submit</button>
+        </form>
+    </div>
+
+    <div>
+        <table style="align-items: center;">
+            <thead>
+                <th>No.</th>
+                <th>Transaction</th>
+                <th>Nominal</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <% transactions.forEach((t,i) => { %>
+                    <tr>
+                        <td><%= i+1 %></td>
+                        <td><%= t.name %> </td>
+                        <td><%= t.nominal %></td>
+                        <td><%= t.transactionDate %></td>
+                        <td><%= t.category %></td>
+                        <td>
+                        <a href="/deleteTransaction/<%=t.id%>"><button>Delete</button></a></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

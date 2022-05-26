@@ -14,10 +14,40 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    email: DataTypes.STRING,
-    role: DataTypes.STRING
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notNull: { msg: `username can't be null`},
+        notEmpty: { msg: `username can't be empty`}
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: `password can't be null`},
+        notEmpty: { msg: `password can't be empty`}
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: `email can't be null`},
+        notEmpty: { msg: `email can't be empty`},
+        isEmail: {msg: `email must be in email format`}
+      }
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: `role can't be null`},
+        notEmpty: { msg: `role can't be empty`}
+      }
+    },
   }, {
     hooks: {
       beforeCreate: (record, options) => {

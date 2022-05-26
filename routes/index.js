@@ -6,9 +6,6 @@ router.post('/login', Controller.checkUser)
 router.get('/signUp', Controller.signUp)
 router.post('/signUp', Controller.addUser)
 
-
-// router.get('/users/:id', Controller.iSpend) // bikin sementara soalnya mau pake :id biar nampilin data yang sesuai id user
-
 router.use(function (req, res, next) {
     console.log(req.session)
     if(!req.session.UserId){
