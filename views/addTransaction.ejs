@@ -8,25 +8,38 @@
     <title>Add Transaction</title>
 </head>
 <body style="text-align:center">
-    <a href="/logout" style="float:right"><button>Logout</button></a>
-    <% if (error) { %>
-        <p class="text-danger"><%= error %></p>
-    <% } %>
-    <form action="/addTransaction" method="post">
-        <label>Transaction name :</label>
-        
-        <input type="text" name="name">
-        <label>Nominal :</label>
-        <input type="number" name="nominal">
-        <label>Category :</label>
-        <select name="category">
-            <option value="Food">Food</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Investment">Investment</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-    <a href="/"><button>Cancel Add</button></a>
+    <nav class="navbar navbar navbar-dark bg-primary">
+        <div class="container">
+            <a href="/" class="navbar-brand h2">iSpend</a>
+            <a href="/logout" class="nav-link text-light">Logout</a>
+        </div>
+      </nav>
+      
+      <div class="container">
+          <div class="justify-content-center mt-4">
+              <h1>Add Transaction</h1>
+              <% if (error) { %>
+                  <p class="text-danger"><%= error %></p>
+              <% } %>
+              <form action="/addTransaction" method="post">
+                  <label>Transaction name :</label>
+                  <input type="text" name="name" class="form-control">
+                  <label>Nominal :</label>
+                  <input type="number" name="nominal" class="form-control">
+                  <label>Category :</label>
+                  <select name="category" class="form-control">
+                      <option selected disabled>Choose...</option>
+                      <option value="Food">Food</option>
+                      <option value="Shopping">Shopping</option>
+                      <option value="Investment">Investment</option>
+                  </select>
+                  <div class="mt-4">
+                      <button type="submit" class="btn btn-success">Submit</button>
+                      <a href="/" class="btn btn-secondary">Cancel Add</a>
+                  </div>
+              </form>
+          </div>
+      </div>
     
     
 </body>

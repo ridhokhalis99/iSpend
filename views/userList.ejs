@@ -6,43 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>Admin Page</title>
-    <style>
-        table, th, td {
-          border: 1px solid black;
-        }
-        </style>
 </head>
-<body style="text-align:center">
-    <a href="/logout" style="float:right"><button>Logout</button></a>
-    <br></br>
-    <h1>Page Admin: List User</h1>
-    <br></br>
+<body>
+    <nav class="navbar navbar navbar-dark bg-primary">
+        <div class="container">
+            <a href="/" class="navbar-brand h2">iSpend</a>
+            <a href="/logout" class="nav-link text-light">Logout</a>
+        </div>
+    </nav>
 
-    <table style="margin-left:auto;margin-right:auto">
-        <thead>
-            <th>Id</th>
-            <th>Fullname</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
-        </thead>
-        <tbody>
-            <% dataUsers.forEach(u => { %>
-             <tr>
-                 <td><%= u.id %> </td>
-                 <td><%= u.Profile.fullName %></td>
-                 <td><%= u.username %> </td>
-                 <td><%= u.email %> </td>
-                 <td><%= u.role %> </td>
-                 <td><a href="/users/<%=u.id%>/delete"><button>Delete</button></a></td>
-             </tr>
+    <div class="container">
+        <div class="justify-content-center mt-5">
+            <h1>Page Admin: List User</h1>
+            <table class="table mt-4">
+                <thead>
+                    <th>Id</th>
+                    <th>Fullname</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <% dataUsers.forEach(u => { %>
+                     <tr>
+                         <td><%= u.id %> </td>
+                         <td><%= u.Profile.fullName %></td>
+                         <td><%= u.username %> </td>
+                         <td><%= u.email %> </td>
+                         <td><%= u.role %> </td>
+                         <td><a href="/users/<%=u.id%>/delete" class="btn btn-danger">Delete</a></td>
+                     </tr>
+        
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-            <% }) %>
-        </tbody>
-    </table>
-    <br></br>
-    <br></br>
-    
 </body>
 </html>
