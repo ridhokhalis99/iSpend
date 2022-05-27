@@ -90,7 +90,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
     <script>
         document.addEventListener("DOMContentLoaded", function(event) { 
-            const labels = [
+            const labels = ['Sisa Uang',
                 'Food',
                 'Investment',
                 'Shopping',
@@ -100,15 +100,15 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 labels: labels,
                 datasets: [{
                     label: 'iSpend',
-                    backgroundColor: ['rgb(38, 230, 90)','rgb(38, 64, 230)','rgb(224, 230, 38)'],
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: [<%=tempTotalFood%>,<%=tempTotalInvestment%>,<%=tempTotalShopping%>],
+                    backgroundColor: ['rgb(38, 230, 90)','rgb(38, 64, 230)','rgb(224, 230, 38)','rgb(224, 50, 38)'],
+                    borderColor: 'rgb(255, 255, 255)',
+                    data: [<%=tempSisaUang%>,<%=tempTotalFood%>,<%=tempTotalInvestment%>,<%=tempTotalShopping%>],
                         
                 }]
             }
 
             const config = {
-                type: 'bar',
+                type: 'doughnut',
                 data: data,
                 options: {}
             }

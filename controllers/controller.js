@@ -106,9 +106,8 @@ class Controller {
             }
         })
           .then((result)=>{
-              console.log(result)
+            //   console.log(result)
               if(result){
-                  
                   tempTotalFood = result
               }
             return Transaction.sum('nominal',{
@@ -142,6 +141,9 @@ class Controller {
             })
             .then(profile => {
                 tempSisaUang = profile.monthlySalary - tempTotalFood - tempTotalInvestment -tempTotalShopping
+                if(tempSisaUang < 0){
+                    tempSisaUang = 0
+                }
                 res.render('iSpend', {transactions, profile, sort, filter, rupiahFormat,tempTotalFood,tempTotalInvestment,tempTotalShopping,tempSisaUang})
             })
             .catch(err => {
