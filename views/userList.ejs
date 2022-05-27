@@ -28,14 +28,16 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <% dataUsers.forEach(u => { %>
+                    <!-- <pre><%= JSON.stringify(dataProfiles,null,2) %> </pre> -->
+                    <% dataProfiles.forEach(p => { %>
                      <tr>
-                         <td><%= u.id %> </td>
-                         <td><%= u.Profile.fullName %></td>
-                         <td><%= u.username %> </td>
-                         <td><%= u.email %> </td>
-                         <td><%= u.role %> </td>
-                         <td><a href="/users/<%=u.id%>/delete" class="btn btn-danger">Delete</a></td>
+                        <td><%= p.User.id %> </td>
+                        <td><%= p.fullName %></td>
+                        <td><%= p.User.username %> </td>
+                        <td><%= p.User.email %> </td>
+                        <td><%= p.User.role %> </td>
+                        <td><a href="/users/<%=p.User.id%>/delete" class="btn btn-danger">Delete</a></td>
+                        
                      </tr>
         
                     <% }) %>

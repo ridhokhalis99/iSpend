@@ -248,10 +248,14 @@ class Controller {
     }
 
     static userList(req, res){
-        User.findAll({include: Profile,
-            where: { role: 'customer'}})
-            .then((dataUsers)=>{
-                res.render('userList',{dataUsers})
+        Profile.findAll({
+            include: {model: User, where:{
+                role: "customer"
+            }}
+        })
+            .then((dataProfiles)=>{
+                console.log(dataProfiles)
+                res.render('userList',{dataProfiles})
             })
             .catch((err)=>{
                 res.send(err)
