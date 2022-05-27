@@ -8,7 +8,6 @@ router.post('/signUp', Controller.addUser)
 router.get('/logout', Controller.logout)
 
 router.use(function (req, res, next) {
-    console.log(req.session)
     if(!req.session.UserId){
         const error = 'Please login first'
         res.redirect(`/login?error=${error}`)
@@ -26,7 +25,6 @@ router.post('/profile/edit', Controller.editProfile)
 router.get('/deleteTransaction/:transactionId', Controller.deleteTransaction)
 
 router.use(function (req, res, next) {
-    console.log(req.session)
     if(req.session.role !== "admin"){
         const error = 'Admin only'
         res.redirect(`/?error=${error}`)
