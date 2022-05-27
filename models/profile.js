@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       Profile.belongsTo(models.User)
     }
 
-    get age(){
+    age(){
       const diffMilliSeconds = Math.abs( new Date() - this.birthDate)
       const diffYears = Math.floor(diffMilliSeconds / (1000 * 60 * 60 * 24 * 365)) 
       return diffYears

@@ -18,7 +18,7 @@
         <div class="mt-5">
             <h1>My Profile</h1>
             <h4>Name: <%= dataProfile.fullName %> </h4>
-            <h4>Age: <%= dataProfile.age %> </h4>
+            <h4>Age: <%= dataProfile.age() %> </h4>
             <h4>Gender: <%= dataProfile.gender %> </h4>
             <h4>Monthly Salary: <%= rupiahFormat(dataProfile.monthlySalary) %> </h4>
             <a href="/profile/edit" class="btn btn-primary mt-2">Edit Profile</a>
